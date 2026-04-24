@@ -1,4 +1,5 @@
 import threading
+import time
 from .base_simulation import BaseSimulation
 
 class TablonSimulation(BaseSimulation):
@@ -41,7 +42,6 @@ class TablonSimulation(BaseSimulation):
             for i in range(self.n_escritores)
         ]
 
-        import time
         inicio = time.perf_counter()
         for t in lectores + escritores:
             t.start()
@@ -85,7 +85,6 @@ class TablonSimulation(BaseSimulation):
                     if self.cant_lectores == 0:
                         self.sem_escritor.release()
             # Simular tiempo de lectura
-            import time
             time.sleep(0.01)   # pequeño delay para ver concurrencia
 
     def _iniciar_lectura(self, lid):
@@ -96,7 +95,6 @@ class TablonSimulation(BaseSimulation):
         self.logger.info(f"{threading.current_thread().name} comienza a leer (lectores activos: {self.lectores_activos})")
 
         # Simular tiempo de lectura
-        import time
         time.sleep(0.02)
 
         with self.estadisticas_lock:
@@ -119,6 +117,6 @@ class TablonSimulation(BaseSimulation):
     def _escribir(self, eid):
         self.logger.info(f"{threading.current_thread().name} comienza a escribir (exclusivo)")
         # Simular tiempo de escritura
-        import time
+        
         time.sleep(0.05)
         self.logger.info(f"{threading.current_thread().name} termina de escribir")

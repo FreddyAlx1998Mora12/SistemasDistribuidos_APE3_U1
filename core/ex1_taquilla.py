@@ -1,4 +1,5 @@
 import threading
+import time
 # importamos la clase base para heredar y aprovechar su sistema de logging y estructura de simulación
 from .base_simulation import BaseSimulation
 
@@ -45,7 +46,7 @@ class TaquillaSimulation(BaseSimulation):
             )
             hilos.append(t)
 
-        import time
+        
         inicio = time.perf_counter()
         for t in hilos:
             t.start()

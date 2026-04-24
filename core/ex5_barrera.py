@@ -1,4 +1,5 @@
 import threading
+import time
 import random
 from .base_simulation import BaseSimulation
 
@@ -42,7 +43,6 @@ class BarreraSimulation(BaseSimulation):
                                  name=f"Hilo-{i}")
             hilos.append(t)
 
-        import time
         inicio = time.perf_counter()
         for t in hilos:
             t.start()
@@ -60,7 +60,7 @@ class BarreraSimulation(BaseSimulation):
         # Fase 1 (trabajo previo)
         tiempo_fase1 = random.uniform(0.1, 0.3)
         self.logger.info(f"Hilo {id_hilo} inicia Fase 1 (trabajo {tiempo_fase1:.2f}s)")
-        import time
+        
         time.sleep(tiempo_fase1)
         self.logger.info(f"Hilo {id_hilo} terminó Fase 1, esperando en barrera...")
 

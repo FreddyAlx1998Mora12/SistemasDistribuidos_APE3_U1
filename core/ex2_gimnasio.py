@@ -1,4 +1,5 @@
 import threading
+import time
 import random
 from .base_simulation import BaseSimulation
 
@@ -82,7 +83,7 @@ class GimnasioSimulation(BaseSimulation):
             self.logger.info(f"Atleta {id_atleta} ENTRA a entrenar (máquinas ocupadas: {uso_actual})")
 
             # Simular tiempo de uso (entre 0.2 y 0.5 segundos)
-            import time
+            
             time.sleep(random.uniform(0.2, 0.5))
 
             # Registrar fin de uso

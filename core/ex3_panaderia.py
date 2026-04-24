@@ -1,4 +1,5 @@
 import threading
+import time
 from .base_simulation import BaseSimulation
 
 class PanaderiaSimulation(BaseSimulation):
@@ -40,7 +41,7 @@ class PanaderiaSimulation(BaseSimulation):
             for i in range(self.n_consumidores)
         ]
 
-        import time
+        
         inicio = time.perf_counter()
         for t in productores + consumidores:
             t.start()
