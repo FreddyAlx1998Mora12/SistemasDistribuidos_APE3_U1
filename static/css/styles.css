@@ -1,0 +1,185 @@
+/* static/css/styles.css */
+body {
+    background: #0b0f19;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #4fc3f7;
+}
+
+.panel {
+    background: #1a1f2e;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+}
+
+input[type="number"] {
+    padding: 6px 10px;
+    border: 1px solid #4fc3f7;
+    background: #0b0f19;
+    color: #e0e0e0;
+    border-radius: 4px;
+    width: 120px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+button {
+    background: #4fc3f7;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    color: #000;
+}
+
+button:hover {
+    background: #81d4fa;
+}
+
+.results-panel,
+.logs-panel {
+    background: #1a1f2e;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.output {
+    min-height: 50px;
+    background: #0d1117;
+    padding: 10px;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    font-family: monospace;
+}
+
+.log-output {
+    max-height: 300px;
+    overflow-y: auto;
+    background: #0d1117;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #8b949e;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* Layout principal */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Barra lateral */
+.sidebar {
+    width: 260px;
+    background: #151a26;
+    padding: 20px 15px;
+    border-right: 1px solid #2a3040;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    color: #4fc3f7;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    flex: 1;
+}
+
+.sidebar ul li {
+    margin-bottom: 5px;
+}
+
+.nav-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid transparent;
+    color: #c0c6d0;
+    padding: 12px 15px;
+    text-align: left;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+}
+
+.nav-btn:hover {
+    background: #1e2537;
+    color: #fff;
+}
+
+.nav-btn.active {
+    background: #1e3a5f;
+    color: #fff;
+    border-color: #4fc3f7;
+    font-weight: bold;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    color: #6b7280;
+    text-align: center;
+    font-size: 0.75rem;
+    padding-top: 15px;
+    border-top: 1px solid #2a3040;
+}
+
+/* Contenido principal */
+.content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+/* Paneles de ejercicios: solo el activo visible */
+.exercise-panel {
+    display: none;
+}
+
+.exercise-panel.active {
+    display: block;
+}
+
+/* Ajustes responsivos opcionales */
+@media (max-width: 768px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

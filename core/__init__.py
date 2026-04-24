@@ -1,0 +1,1 @@
+# Esto solo es un paquete core vacio: contiene los motores de simulación.

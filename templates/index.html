@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Laboratorio de Sincronización Concurrente</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="layout">
+      <!-- Barra lateral de navegación -->
+      <nav class="sidebar">
+        <h2>🧵 Ejercicios</h2>
+        <ul>
+          <li>
+            <button class="nav-btn active" data-ex="ex1">
+              🎬 Taquilla (Mutex)
+            </button>
+          </li>
+          <li>
+            <button class="nav-btn" data-ex="ex2">
+              🏋️ Gimnasio (Semáforos)
+            </button>
+          </li>
+          <li>
+            <button class="nav-btn" data-ex="ex3">
+              🥖 Panadería (Prod-Cons)
+            </button>
+          </li>
+          <li>
+            <button class="nav-btn" data-ex="ex4">📋 Tablón (Lect-Esc)</button>
+          </li>
+          <li>
+            <button class="nav-btn" data-ex="ex5">
+              🚦 Barrera (Sincronización)
+            </button>
+          </li>
+        </ul>
+        <div class="sidebar-footer">
+          <small>Arquitectura de Sistemas Distribuidos</small>
+        </div>
+      </nav>
+
+      <!-- Contenido principal (paneles intercambiables) -->
+      <main class="content">
+        <!-- Panel Ejercicio 1: Taquilla -->
+        <section id="panel-ex1" class="exercise-panel active">
+          <h1>🎬 Dilema de la Taquilla</h1>
+          <p>Simulación de venta concurrente con <strong>Mutex</strong></p>
+
+          <div class="panel">
+            <label
+              >Número de hilos (N):
+              <input type="number" class="ex1-hilos" value="5" min="1" />
+            </label>
+            <label
+              >Ventas por hilo (M):
+              <input
+                type="number"
+                class="ex1-ventas"
+                value="100000"
+                min="1000"
+              />
+            </label>
+            <div class="buttons">
+              <button onclick="ejecutarEx1(true)">✅ Con Mutex</button>
+              <button onclick="ejecutarEx1(false)">⚠ Sin Mutex</button>
+              <button onclick="secuencialEx1()">🔁 Secuencial</button>
+              <button onclick="verificar10Ex1()">
+                🔬 Verificar 10 ejecuciones
+              </button>
+            </div>
+          </div>
+
+          <div class="results-panel">
+            <h2>Resultados</h2>
+            <div id="resultados-ex1" class="output"></div>
+          </div>
+          <div class="logs-panel">
+            <h2>Registro de eventos (logs)</h2>
+            <pre id="logs-ex1" class="log-output">
+Los logs aparecerán aquí tras ejecutar.</pre
+            >
+          </div>
+        </section>
+
+        <!-- Panel Ejercicio 2: Gimnasio -->
+        <section id="panel-ex2" class="exercise-panel">
+          <h1>🏋️ Gimnasio - Semáforos de Conteo</h1>
+          <p>Control de acceso a máquinas con <strong>MiSemaforo</strong></p>
+
+          <div class="panel">
+            <label
+              >Número de atletas (N):
+              <input type="number" class="ex2-atletas" value="8" min="1" />
+            </label>
+            <label
+              >Máquinas disponibles (M):
+              <input type="number" class="ex2-maquinas" value="3" min="1" />
+            </label>
+            <label
+              >Repeticiones por atleta (R):
+              <input type="number" class="ex2-repeticiones" value="3" min="1" />
+            </label>
+            <div class="buttons">
+              <button onclick="ejecutarEx2()">▶ Ejecutar Simulación</button>
+            </div>
+          </div>
+
+          <div class="results-panel">
+            <h2>Resultados</h2>
+            <div id="resultados-ex2" class="output"></div>
+          </div>
+          <div class="logs-panel">
+            <h2>Registro de eventos (logs)</h2>
+            <pre id="logs-ex2" class="log-output">
+Los logs aparecerán aquí tras ejecutar.</pre
+            >
+          </div>
+        </section>
+
+        <section id="panel-ex3" class="exercise-panel">
+          <h1>🥖 La Vitrina de la Panadería</h1>
+          <p>Productor-Consumidor con buffer limitado y semáforos</p>
+
+          <div class="panel">
+            <label
+              >Productores:
+              <input type="number" class="ex3-productores" value="2" min="1" />
+            </label>
+            <label
+              >Consumidores:
+              <input type="number" class="ex3-consumidores" value="3" min="1" />
+            </label>
+            <label
+              >Capacidad de la vitrina:
+              <input type="number" class="ex3-capacidad" value="10" min="1" />
+            </label>
+            <label
+              >Items por productor:
+              <input type="number" class="ex3-items" value="5" min="1" />
+            </label>
+            <div class="buttons">
+              <button onclick="ejecutarEx3()">▶ Ejecutar Simulación</button>
+            </div>
+          </div>
+
+          <div class="results-panel">
+            <h2>Resultados</h2>
+            <div id="resultados-ex3" class="output"></div>
+          </div>
+          <div class="logs-panel">
+            <h2>Registro de eventos</h2>
+            <pre id="logs-ex3" class="log-output">
+Los logs aparecerán aquí tras ejecutar.</pre
+            >
+          </div>
+        </section>
+
+        <section id="panel-ex4" class="exercise-panel">
+          <h1>📋 Tablón de Notas - Lectores/Escritores</h1>
+          <p>Acceso concurrente con prioridad seleccionable</p>
+
+          <div class="panel">
+            <label
+              >Lectores:
+              <input type="number" class="ex4-lectores" value="5" min="1" />
+            </label>
+            <label
+              >Escritores:
+              <input type="number" class="ex4-escritores" value="2" min="1" />
+            </label>
+            <label
+              >Operaciones por lector:
+              <input type="number" class="ex4-ops-lector" value="5" min="1" />
+            </label>
+            <label
+              >Operaciones por escritor:
+              <input type="number" class="ex4-ops-escritor" value="3" min="1" />
+            </label>
+            <label
+              >Prioridad:
+              <select class="ex4-prioridad">
+                <option value="lectores">
+                  Lectores (posible inanición de escritores)
+                </option>
+                <option value="escritores">Escritores (evita inanición)</option>
+              </select>
+            </label>
+            <div class="buttons">
+              <button onclick="ejecutarEx4()">▶ Ejecutar Simulación</button>
+            </div>
+          </div>
+
+          <div class="results-panel">
+            <h2>Resultados</h2>
+            <div id="resultados-ex4" class="output"></div>
+          </div>
+          <div class="logs-panel">
+            <h2>Registro de eventos</h2>
+            <pre id="logs-ex4" class="log-output">
+Los logs aparecerán aquí tras ejecutar.</pre
+            >
+          </div>
+        </section>
+
+        <section id="panel-ex5" class="exercise-panel">
+          <h1>🚦 El Punto de Encuentro - Barrera de Sincronización</h1>
+          <p>Los hilos deben sincronizarse antes de la Fase 2</p>
+
+          <div class="panel">
+            <label
+              >Número de hilos (N):
+              <input type="number" class="ex5-hilos" value="5" min="2" />
+            </label>
+            <div class="buttons">
+              <button onclick="ejecutarEx5()">▶ Ejecutar Simulación</button>
+            </div>
+          </div>
+
+          <div class="results-panel">
+            <h2>Resultados</h2>
+            <div id="resultados-ex5" class="output"></div>
+          </div>
+          <div class="logs-panel">
+            <h2>Registro de eventos</h2>
+            <pre id="logs-ex5" class="log-output">
+Los logs aparecerán aquí tras ejecutar.</pre
+            >
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>
