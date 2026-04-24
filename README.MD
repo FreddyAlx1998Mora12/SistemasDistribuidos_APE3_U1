@@ -6,13 +6,14 @@
 
 ## 📂 Estructura del proyecto
 
+```text
 ArquitecturaSistemasDistribuidos/
 ├── app.py # Controlador principal – API REST
 ├── config.py # Configuración centralizada
 ├── requirements.txt # Dependencias (Flask, Flask-CORS)
 │
 ├── core/ # Núcleo de lógica concurrente
-│ ├── init.py
+│ ├── __init__.py
 │ ├── base_simulation.py # Clase abstracta base + sistema de logging
 │ ├── ex1_taquilla.py # Ejercicio 1: Exclusión mutua (Mutex)
 │ ├── ex2_gimnasio.py # Ejercicio 2: Semáforos de conteo
@@ -24,14 +25,12 @@ ArquitecturaSistemasDistribuidos/
 │ └── index.html # Frontend SPA con 5 paneles intercambiables
 │
 ├── static/
-│ ├── css/
-│ │ └── styles.css # Estilos dark y barra lateral
-│ └── js/
-│ └── app.js # Lógica asíncrona (fetch) para la API
-│
-└── screenshots/ # Capturas de pantalla (ver sección 📸)
+  ├── css/
+  │ └── styles.css # Estilos dark y barra lateral
+  └── js/
+    └── app.js # Lógica asíncrona (fetch) para la API
 
----
+```
 
 ## 🧠 Arquitectura del sistema
 
